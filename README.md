@@ -2,9 +2,9 @@
 
 ## Built using:
 
-Front-end library: React
-CSS framework: React-bootstrap
-CSS animations library: Animate.css
+- Front-end library: React
+- CSS framework: React-bootstrap
+- CSS animations library: Animate.css
 
 In the project directory, you can run:
 
