@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const mailgunTransport = require('nodemailer-mailgun-transport');
 
 const app = express();
-app.use(cors({ origin: 'http://your-frontend-domain.com' })); // Cambiar por el dominio de tu frontend
+app.use(cors({ origin: 'https://devjfelipe.vercel.app' })); // Cambiar por el dominio de tu frontend
 app.use(express.json());
 app.listen(5000, () => console.log('Server Running on port 5000'));
 
