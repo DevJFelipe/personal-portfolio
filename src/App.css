@@ -425,7 +425,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     position: absolute;
     width: 0;
     height: 100%;
-    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+    background: linear-gradient(90deg, #044a20 0%, #66c844 100%);
     top: 0;
     left: 0;
     z-index: -1;
@@ -457,7 +457,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .proj-imgbx::before {
   content: "";
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  background: linear-gradient(90deg, #044a20 0%, #66c844 100%);
   opacity: 0.85;
   position: absolute;
   width: 100%;
@@ -504,7 +504,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /************ Projects Css ************/
 .contact {
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  background-image: url('./assets/img/dark-green-gradient.png');
   padding: 60px 0 200px 0;
 }
 .contact img {
