@@ -1,53 +1,51 @@
+require('dotenv').config();
 const express = require('express');
-const router = express.Router();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
-const { code } = require('@nextui-org/react');
+const mailgunTransport = require('nodemailer-mailgun-transport');
 
-// server used to send emails
 const app = express();
-app.use(cors());
+app.use(cors({ origin: 'http://your-frontend-domain.com' })); // Cambiar por el dominio de tu frontend
 app.use(express.json());
-app.use('/', router);
-app.listen(5000, () => console.log('Server Running'));
-console.log(process.env.EMAIL_USER);
-console.log(process.env.EMAIL_PASS);
+app.listen(5000, () => console.log('Server Running on port 5000'));
 
-const contactEmail = nodemailer.createTransport({
-    service: 'outlook',
+// Configuración de Mailgun
+const mailgunAuth = {
     auth: {
-        user: "devjfelipe@outlook.com",
-        pass: "",
+        api_key: process.env.MAILGUN_API_KEY,
+        domain: process.env.MAILGUN_DOMAIN,
     },
-});
+};
 
+const contactEmail = nodemailer.createTransport(mailgunTransport(mailgunAuth));
+
+// Verificación de transporte
 contactEmail.verify((error) => {
     if (error) {
-        console.log(error);
+        console.error('Mailgun setup error:', error);
     } else {
-        console.log('Ready to Send');
+        console.log('Mailgun ready to send emails');
     }
 });
 
-router.post('/contact', (req, res) => {
-    const name = req.body.firstName + req.body.lastName;
-    const email = req.body.email;
-    const message = req.body.message;
-    const phone = req.body.phone;
+app.post('/contact', (req, res) => {
+    const { firstName, lastName, email, phone, message } = req.body;
     const mail = {
-        from: name,
+        from: `${firstName} ${lastName} <${email}>`,
         to: 'devjfelipe@outlook.com',
         subject: 'Contact Form Submission - Portfolio',
-        html: `<p>Name: ${name}</p>
-               <p>Email: ${email}</p>
-               <p>Phone: ${phone}</p>
-               <p>Message: ${message}</p>`
+        html: `<p><strong>Name:</strong> ${firstName} ${lastName}</p>
+               <p><strong>Email:</strong> ${email}</p>
+               <p><strong>Phone:</strong> ${phone}</p>
+               <p><strong>Message:</strong> ${message}</p>`,
     };
+
     contactEmail.sendMail(mail, (error) => {
         if (error) {
-            res.json(error);
+            console.error('Error sending email:', error);
+            res.status(500).json({ code: 500, status: 'Error sending email' });
         } else {
-            res.json({code: 200, status: 'Message Sent'});
+            res.status(200).json({ code: 200, status: 'Message Sent' });
         }
     });
 });
