@@ -27,23 +27,25 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
     try {
-      const response = await fetch("https://your-backend-url.com/contact", {
+      const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formDetails),
       });
-      setButtonText("Send");
+      
       const result = await response.json();
+      setButtonText("Send");
       setFormDetails(formInitialDetails);
+      
       if (result.code === 200) {
         setStatus({ success: true, message: 'Message sent successfully' });
       } else {
         setStatus({ success: false, message: 'Something went wrong, please try again later.' });
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error:', error);
       setStatus({ success: false, message: 'Failed to connect to server. Please try again later.' });
       setButtonText("Send");
     }
