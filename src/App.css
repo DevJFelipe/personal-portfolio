@@ -435,6 +435,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   overflow: hidden;
 }
 
+.skill-card-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 .skill-card::before {
   content: '';
   position: absolute;
@@ -587,33 +592,113 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   opacity: 0.3;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .skill-bx {
-    padding: 60px 30px;
-    margin-top: -40px;
+/* Smooth reveal animations */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
   }
-  
-  .skill h2 {
-    font-size: 36px;
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  .category-title {
-    font-size: 24px;
-    text-align: center;
-    padding-left: 0;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
   }
-  
-  .category-title::before {
-    display: none;
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}
+
+.skill-category .category-title {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.skill-card {
+  animation: slideInFromBottom 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.skill-progress {
+  animation: progressFill 1.5s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.5s;
+}
+
+/* Enhanced skill card interactions */
+.skill-card:hover .skill-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.skill-icon {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Staggered animation utilities */
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-5 { animation-delay: 0.5s; }
+
+/* Improved hover states */
+.skill-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(102, 200, 68, 0.3),
+    0 0 0 1px rgba(102, 200, 68, 0.1);
+}
+
+.skill-card:hover .skill-name {
+  color: #66c844;
+}
+
+/* Loading shimmer effect for progress bars */
+.skill-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent
+  );
+  animation: shimmer 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive improvements */
+@media (max-width: 576px) {
   .skill-card {
-    margin-bottom: 20px;
+    transform: none !important;
   }
   
-  .soft-skills-section {
-    padding: 30px 20px;
+  .skill-card:hover {
+    transform: translateY(-5px) !important;
   }
 }
 
