@@ -1,4 +1,7 @@
-import { Container, Row, Col, Carousel } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
 
 // Import your logos (adjust paths as needed)
 import javaLogo from "../assets/img/logos/java-logo.png";
@@ -17,102 +20,157 @@ import jiraLogo from "../assets/img/logos/jira-logo.png";
 import colorSharp from "../assets/img/color-sharp-dark-green.png";
 
 export const Skills = () => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const skillsData = {
+    languages: [
+      { name: "Java", logo: javaLogo, level: 90 },
+      { name: "JavaScript", logo: jsLogo, level: 85 },
+      { name: "PHP", logo: phpLogo, level: 80 },
+    ],
+    frameworks: [
+      { name: "React", logo: reactLogo, level: 88 },
+      { name: "Node.js", logo: nodeLogo, level: 82 },
+      { name: "Spring Boot", logo: springLogo, level: 85 },
+    ],
+    databases: [
+      { name: "MongoDB", logo: mongoLogo, level: 80 },
+      { name: "MySQL", logo: mysqlLogo, level: 85 },
+    ],
+    tools: [
+      { name: "Git", logo: gitLogo, level: 90 },
+      { name: "Figma", logo: figmaLogo, level: 75 },
+      { name: "Jira", logo: jiraLogo, level: 80 },
+    ]
+  };
+
+  const SkillCard = ({ skill, delay }) => (
+    <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
+      <TrackVisibility once>
+        {({ isVisible }) => (
+          <div 
+            className={`skill-card ${isVisible ? 'animate__animated animate__fadeInUp' : ''}`}
+            style={{ animationDelay: `${delay}ms` }}
+          >
+            <div className="skill-icon">
+              <img src={skill.logo} alt={skill.name} />
+            </div>
+            <h5 className="skill-name">{skill.name}</h5>
+            <div className="skill-level">
+              <div className="skill-bar">
+                <div 
+                  className="skill-progress" 
+                  style={{ 
+                    width: isVisible ? `${skill.level}%` : '0%',
+                    transition: 'width 1.5s ease-in-out 0.5s'
+                  }}
+                ></div>
+              </div>
+              <span className="skill-percentage">{skill.level}%</span>
+            </div>
+          </div>
+        )}
+      </TrackVisibility>
+    </Col>
+  );
+
+  const SkillCategory = ({ title, skills, startDelay = 0 }) => (
+    <div className="skill-category mb-5">
+      <TrackVisibility once>
+        {({ isVisible }) => (
+          <h3 className={`category-title ${isVisible ? 'animate__animated animate__fadeInLeft' : ''}`}>
+            {title}
+          </h3>
+        )}
+      </TrackVisibility>
+      <Row className="justify-content-center">
+        {skills.map((skill, index) => (
+          <SkillCard 
+            key={skill.name} 
+            skill={skill} 
+            delay={startDelay + (index * 100)}
+          />
+        ))}
+      </Row>
+    </div>
+  );
+
   return (
     <section className="skill" id="skills">
       <Container>
         <Row>
           <Col>
-            <div className="skill-bx wow zoomIn">
-              <h2>Skills</h2>
-              <p>
-                My experience covers a wide range of technologies, allowing me to build robust, 
-                scalable applications from front to back.
-                <br/>
-                Here’s a breakdown of my top skills...
-              </p>
-              
-              <Carousel indicators={false} interval={null}>
-                {/* Slide 1: Languages & Frameworks */}
-                <Carousel.Item>
-                  <h3 className="mt-4">Languages & Frameworks</h3>
-                  <Row className="mt-3 justify-content-center">
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={javaLogo} alt="Java" style={{ width: '50px', height: 'auto' }}/>
-                      <p>Java</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={phpLogo} alt="PHP" style={{ width: '50px', height: 'auto' }}/>
-                      <p>PHP</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={jsLogo} alt="JavaScript" style={{ width: '50px', height: 'auto' }}/>
-                      <p>JavaScript</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={reactLogo} alt="React" style={{ width: '50px', height: 'auto' }}/>
-                      <p>React</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={nodeLogo} alt="Node.js" style={{ width: '50px', height: 'auto' }}/>
-                      <p>Node.js</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={springLogo} alt="Spring Boot" style={{ width: '50px', height: 'auto' }}/>
-                      <p>Spring Boot</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={mongoLogo} alt="MongoDB" style={{ width: '50px', height: 'auto' }}/>
-                      <p>MongoDB</p>
-                    </Col>
-                  </Row>
-                </Carousel.Item>
+            <TrackVisibility once>
+              {({ isVisible }) => {
+                if (isVisible && !hasAnimated) {
+                  setHasAnimated(true);
+                }
+                return (
+                  <div className={`skill-bx ${hasAnimated ? 'animate__animated animate__fadeIn' : ''}`}>
+                    <div className="skill-header">
+                      <h2>Skills & Technologies</h2>
+                      <p className="skill-description">
+                        My expertise spans across modern technologies and frameworks. 
+                        I'm passionate about building scalable applications and 
+                        continuously learning new technologies to deliver the best solutions.
+                      </p>
+                    </div>
+                    
+                    <div className="skills-content">
+                      <SkillCategory 
+                        title="Programming Languages" 
+                        skills={skillsData.languages}
+                        startDelay={200}
+                      />
+                      
+                      <SkillCategory 
+                        title="Frameworks & Libraries" 
+                        skills={skillsData.frameworks}
+                        startDelay={400}
+                      />
+                      
+                      <SkillCategory 
+                        title="Databases" 
+                        skills={skillsData.databases}
+                        startDelay={600}
+                      />
+                      
+                      <SkillCategory 
+                        title="Tools & Platforms" 
+                        skills={skillsData.tools}
+                        startDelay={800}
+                      />
+                    </div>
 
-                {/* Slide 2: Tools */}
-                <Carousel.Item>
-                  <h3 className="mt-4">Tools</h3>
-                  <Row className="mt-3 justify-content-center">
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={gitLogo} alt="Git" style={{ width: '50px', height: 'auto' }}/>
-                      <p>Git</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={mysqlLogo} alt="MySQL" style={{ width: '50px', height: 'auto' }}/>
-                      <p>MySQL</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={figmaLogo} alt="Figma" style={{ width: '50px', height: 'auto' }}/>
-                      <p>Figma</p>
-                    </Col>
-                    <Col xs={6} md={3} className="text-center mb-4">
-                      <img src={jiraLogo} alt="Jira" style={{ width: '50px', height: 'auto' }}/>
-                      <p>Jira</p>
-                    </Col>
-                  </Row>
-                </Carousel.Item>
-
-                {/* Slide 3: Soft Skills */}
-                <Carousel.Item>
-                  <h3 className="mt-4">Soft Skills</h3>
-                  <ul className="mt-3">
-                    <li>Problem-Solving</li>
-                    <li>Teamwork (SCRUM)</li>
-                    <li>Adaptability</li>
-                    <li>Time Management</li>
-                    <li>Critical Thinking</li>
-                    <li>Effective Communication</li>
-                  </ul>
-                </Carousel.Item>
-
-                {/* Slide 4: Languages */}
-                <Carousel.Item>
-                  <h3 className="mt-4">Languages</h3>
-                  <ul className="mt-3">
-                    <li>Spanish (Native)</li>
-                    <li>English (Fluent)</li>
-                  </ul>
-                </Carousel.Item>
-              </Carousel>
-            </div>
+                    <div className="soft-skills-section">
+                      <TrackVisibility once>
+                        {({ isVisible }) => (
+                          <div className={`soft-skills ${isVisible ? 'animate__animated animate__fadeInUp' : ''}`}>
+                            <h3>Core Competencies</h3>
+                            <Row>
+                              <Col md={6}>
+                                <ul className="skills-list">
+                                  <li>Full-Stack Development</li>
+                                  <li>Problem-Solving & Debugging</li>
+                                  <li>Agile Methodologies (SCRUM)</li>
+                                </ul>
+                              </Col>
+                              <Col md={6}>
+                                <ul className="skills-list">
+                                  <li>Team Collaboration</li>
+                                  <li>Performance Optimization</li>
+                                  <li>Clean Code Practices</li>
+                                </ul>
+                              </Col>
+                            </Row>
+                          </div>
+                        )}
+                      </TrackVisibility>
+                    </div>
+                  </div>
+                );
+              }}
+            </TrackVisibility>
           </Col>
         </Row>
       </Container>
