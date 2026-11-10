@@ -14,9 +14,8 @@
   margin-bottom: var(--space-7);
   padding-block: var(--space-3);
   border-bottom: 1px solid var(--line);
-  background: rgb(0 43 35 / 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Opaque: a translucent bar let card text show through behind the chips. */
+  background: var(--ground);
 }
 
 .filter-bar__options {
@@ -98,7 +97,12 @@
   color: var(--text-2);
 }
 
-@media (max-width: 799px) {
+/* On a phone the chips wrap to three rows; pinned, they would cover a quarter of the screen. */
+@media (max-width: 639px) {
+  .filter-bar {
+    position: static;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }

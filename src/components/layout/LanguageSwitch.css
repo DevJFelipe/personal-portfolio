@@ -6,7 +6,8 @@
 }
 
 .lang-switch__option {
-  min-width: 42px;
+  position: relative;
+  min-width: 44px;
   min-height: 34px;
   padding: 0 0.6rem;
   border: 0;
@@ -32,4 +33,11 @@
 
 .lang-switch__option:focus-visible {
   outline-offset: 1px;
+}
+
+/* The pill stays compact; the tappable area reaches 44px over its padding. */
+.lang-switch__option::after {
+  content: '';
+  position: absolute;
+  inset: -5px 0;
 }

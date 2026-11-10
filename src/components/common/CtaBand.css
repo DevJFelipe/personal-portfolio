@@ -29,6 +29,7 @@
 .cta-band h2 {
   font-size: var(--text-2xl);
   max-width: 17ch;
+  text-wrap: balance;
 }
 
 .cta-band p {
@@ -44,9 +45,11 @@
   gap: var(--space-5);
 }
 
-@media (max-width: 859px) {
+/* Under 1200px the heading's column is too narrow for two lines, so the band stacks. */
+@media (max-width: 1199px) {
   .cta-band__inner {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
     align-items: start;
   }
 }

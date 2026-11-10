@@ -125,6 +125,13 @@
   color: var(--text);
 }
 
+/* Between 900 and 1199px a 3:9 split breaks "Cómo trabajo" over two lines. */
+@media (max-width: 1199px) {
+  .about-layout {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  }
+}
+
 @media (max-width: 899px) {
   .about-layout {
     grid-template-columns: 1fr;

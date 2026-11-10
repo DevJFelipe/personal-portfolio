@@ -9,7 +9,7 @@
   gap: clamp(2rem, 1rem + 3vw, 4rem);
 }
 
-@media (max-width: 799px) {
+@media (max-width: 639px) {
   .work-grid__pair {
     grid-template-columns: 1fr;
     gap: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
