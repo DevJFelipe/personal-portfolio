@@ -1,0 +1,114 @@
+.contact-section {
+  padding-top: var(--space-6);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: start;
+}
+
+.contact-direct {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contact-direct h2 {
+  font-size: var(--text-lg);
+}
+
+.contact-direct__block {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.contact-direct__label {
+  color: var(--text-3);
+  font-size: var(--text-sm);
+}
+
+.contact-direct__links {
+  display: grid;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.contact-direct__links a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contact-direct__links a > svg:first-child {
+  width: 22px;
+  height: 22px;
+  color: var(--sprout);
+}
+
+.contact-direct__links small {
+  display: block;
+  color: var(--text-2);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+.contact-direct__links .contact-direct__ext {
+  width: 18px;
+  height: 18px;
+  color: var(--text-3);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.contact-direct__links a:hover .contact-direct__ext,
+.contact-direct__links a:focus-visible .contact-direct__ext {
+  color: var(--text);
+  transform: translate(3px, -3px);
+}
+
+.contact-direct__facts {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--text-2);
+}
+
+.contact-direct__facts div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+
+.contact-direct__facts dt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-3);
+}
+
+.contact-direct__facts dt svg {
+  width: 16px;
+  height: 16px;
+  color: var(--sprout);
+}
+
+.contact-direct__facts dd {
+  margin: 0;
+  color: var(--text);
+}
+
+@media (max-width: 899px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid .contact-form {
+    order: -1;
+  }
+}

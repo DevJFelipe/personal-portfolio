@@ -1,0 +1,185 @@
+/* The hero keeps the original composition: centered text column, boxed tag,
+   bold name, typed role and the floating 3D illustration. */
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(3.5rem, 1.5rem + 8vw, 10.75rem));
+  padding-bottom: clamp(4.5rem, 3rem + 4vw, 7rem);
+  background: url('../../assets/img/hero-bg.webp') top center / cover no-repeat, var(--ground);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 140px;
+  background: linear-gradient(to bottom, transparent, var(--ground));
+  pointer-events: none;
+}
+
+.hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__tag {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 8px 12px;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  background: linear-gradient(90.21deg, rgb(19 64 57 / 0.8) -5.91%, rgb(17 34 64 / 0.8) 111.58%);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.hero__title {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+}
+
+.hero__line {
+  display: block;
+}
+
+.hero__role {
+  min-height: 1.3em;
+  margin-top: 0.3rem;
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.6rem, 1.05rem + 2.2vw, 2.65rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.hero__typed {
+  padding-right: 0.06em;
+  border-right: 0.08em solid var(--text-3);
+  animation: caret-blink 1.05s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+.hero__lead {
+  max-width: 35em;
+  color: var(--text-2);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: 0.015em;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.hero__connect {
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-6);
+  list-style: none;
+  color: var(--text-2);
+  font-size: var(--text-sm);
+}
+
+.hero__place {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.hero__place svg {
+  width: 16px;
+  height: 16px;
+  color: var(--sprout);
+}
+
+.hero__visual img {
+  width: 100%;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+/* One orchestrated entrance on load; nothing else on the page enters this way. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__text > * {
+    animation: hero-in 900ms var(--ease-out) both;
+    animation-delay: calc(var(--order, 0) * 90ms + 80ms);
+  }
+
+  .hero__visual img {
+    animation:
+      hero-visual-in 1100ms var(--ease-out) 250ms both,
+      hero-float 6s var(--ease-in-out) 1350ms infinite alternate;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes hero-visual-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+}
+
+@keyframes hero-float {
+  from {
+    transform: translateY(-14px);
+  }
+  to {
+    transform: translateY(14px);
+  }
+}
+
+@media (max-width: 1199px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .hero__visual img {
+    max-width: 320px;
+  }
+}

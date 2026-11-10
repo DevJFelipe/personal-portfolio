@@ -1,0 +1,143 @@
+.about-bio {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 62ch;
+  color: var(--text-2);
+  font-size: var(--text-md);
+  line-height: 1.6;
+}
+
+.about-bio p:first-child {
+  color: var(--text);
+}
+
+.facts {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.facts__row {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  color: var(--text-3);
+  font-size: var(--text-sm);
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Section title on the left, content on the right */
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--space-6) clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: start;
+}
+
+.about-layout__title {
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+  font-size: var(--text-xl);
+}
+
+.about-layout__title h2 {
+  font-size: var(--text-xl);
+}
+
+.about-layout__note {
+  margin-top: var(--space-3);
+  color: var(--text-2);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.education {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
+  color: var(--text-2);
+}
+
+.education h3 {
+  color: var(--text);
+  font-size: var(--text-lg);
+}
+
+.education__degree {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.education__cert {
+  margin-top: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-7);
+  list-style: none;
+}
+
+.principle {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--line-strong);
+}
+
+.principle h3 {
+  font-size: var(--text-md);
+}
+
+.principle p {
+  color: var(--text-2);
+}
+
+.stack-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-7);
+}
+
+.stack-group {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.stack-group h3 {
+  font-size: var(--text-base);
+  color: var(--text);
+}
+
+@media (max-width: 899px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-layout__title {
+    position: static;
+  }
+}
+
+@media (max-width: 599px) {
+  .principles,
+  .stack-groups {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,26 @@
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100;
+  padding: 0.7rem 1rem;
+  background: var(--text);
+  color: var(--ground-deep);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+main {
+  display: block;
+  min-height: 70vh;
+}
+
+main:focus {
+  outline: none;
+}

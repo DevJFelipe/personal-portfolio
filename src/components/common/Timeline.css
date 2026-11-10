@@ -1,0 +1,122 @@
+.timeline {
+  position: relative;
+  display: grid;
+  list-style: none;
+}
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--line);
+}
+
+.timeline__item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline__period {
+  padding-top: 0.3rem;
+  color: var(--text-2);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.timeline__body {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.timeline__company {
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+}
+
+.timeline__role {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.timeline__context {
+  color: var(--text-2);
+}
+
+.timeline__place {
+  color: var(--text-3);
+}
+
+.timeline__highlights {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--measure);
+  margin-block: var(--space-4) var(--space-3);
+  padding-left: 1.1rem;
+  color: var(--text-2);
+}
+
+.timeline__highlights li::marker {
+  color: var(--sprout);
+}
+
+/* Full timeline: a rail that fills as the reader moves down the list. */
+.timeline--full {
+  padding-left: 1.75rem;
+}
+
+.timeline--full::before,
+.timeline--full::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.3rem;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--line-strong);
+}
+
+.timeline--full::after {
+  background: var(--sprout);
+  transform-origin: top center;
+}
+
+.timeline--full .timeline__item::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-6) + 0.45rem);
+  left: calc(-1.75rem + 0.3rem - 5px);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--sprout);
+  border-radius: 50%;
+  background: var(--ground);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline--full::after {
+      animation: timeline-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 70%;
+    }
+  }
+}
+
+@keyframes timeline-fill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 719px) {
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}

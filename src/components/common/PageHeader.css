@@ -1,0 +1,43 @@
+.page-header {
+  padding-top: calc(var(--header-h) + clamp(3rem, 2rem + 5vw, 6.5rem));
+  padding-bottom: clamp(3rem, 2rem + 3vw, 4.5rem);
+  background:
+    radial-gradient(ellipse 70% 90% at 0% 0%, rgb(17 49 48 / 0.9), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 100% 0%, rgb(0 59 32 / 0.55), transparent 70%),
+    var(--ground);
+}
+
+.page-header__inner {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.page-header__inner--aside {
+  grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+  align-items: end;
+}
+
+.page-header__main {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 50rem;
+}
+
+.page-header h1 {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.02em;
+}
+
+.page-header__lead {
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
+@media (max-width: 899px) {
+  .page-header__inner--aside {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}

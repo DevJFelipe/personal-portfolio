@@ -1,0 +1,46 @@
+# DESIGN.md
+
+Sistema visual del portafolio. El hero original es la referencia: todo lo demás extiende su mundo en lugar de reemplazarlo.
+
+## Mundo
+
+Campo verde de noche: el fondo continúa el color base de la ilustración del hero (`#002b23`), con brillos suaves en los bordes. El sitio es oscuro porque así nació la identidad, y se lee cómodo en la pantalla de un reclutador o de un cliente en la noche.
+
+## Color
+
+| Token | Valor | Uso |
+| --- | --- | --- |
+| `--ground` | `#002b23` | Fondo de página, igual al del hero |
+| `--ground-raised` | `#04352c` | Secciones alternas, tarjetas y paneles |
+| `--ground-deep` | `#001d17` | Pie de página, menú móvil |
+| `--text` | `#eef6f2` | Texto principal |
+| `--text-2` | `#a9c4ba` | Texto secundario (tinte verde, nunca gris) |
+| `--text-3` | `#92afa4` | Texto terciario; no usar sobre `--surface` |
+| `--sprout` | `#8be3b0` | Acento interactivo: enlaces, foco, estados activos |
+| `--maize` | `#f2c45a` | Señal cálida: disponibilidad y detalles puntuales |
+
+Todo el texto pasa 4.5:1 sobre su fondo. Oasis usa la paleta de su propia marca dentro de su ilustración.
+
+## Tipografía
+
+Una sola familia: **Schibsted Grotesk** (OFL), grotesca sólida que conserva el aire del hero original. Escala en `tokens.css` (`--text-xs` a `--text-hero`), títulos en peso 700 con `text-wrap: balance`, cuerpo a 1.65 de interlineado y medida de 66 caracteres.
+
+## Componentes
+
+- **Botones:** esquinas rectas y relleno que barre de izquierda a derecha al pasar el cursor, heredados del hero. `btn--solid` para la acción principal.
+- **Acción de texto:** texto en negrita con flecha que se desplaza (el «Hablemos» del hero).
+- **Proyectos:** marco 16:10 con borde fino. Capturas reales cuando existen; si no, una ilustración que explica el mecanismo del proyecto, con el mismo grosor de línea en todas.
+- **Chips:** tecnologías, con borde fino y radio pequeño.
+- **Línea de tiempo:** fechas a la izquierda, rol y empresa a la derecha; en «Sobre mí» la línea se llena al bajar.
+
+## Movimiento
+
+- Un único momento orquestado: la entrada del hero al cargar el inicio.
+- El resto del movimiento responde a una acción: hover, menú, filtros, copiar correo, envío del formulario.
+- Con `prefers-reduced-motion` todo queda quieto y el rol del hero se muestra sin animación de escritura.
+
+## Reglas
+
+- Sin etiquetas pequeñas en mayúsculas encima de los títulos.
+- Sin texto con degradado ni tarjetas idénticas de ícono + título + texto como estructura.
+- Todo control con foco visible, objetivos táctiles de al menos 44 px y textos en los dos idiomas.
