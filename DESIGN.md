@@ -6,6 +6,8 @@ Sistema visual del portafolio. El hero original es la referencia: todo lo demás
 
 Campo verde de noche: el fondo continúa el color base de la ilustración del hero (`#002b23`), con brillos suaves en los bordes. El sitio es oscuro porque así nació la identidad, y se lee cómodo en la pantalla de un reclutador o de un cliente en la noche.
 
+Los cuatro destellos del arte original se dibujan alrededor de la ilustración del hero, no en la imagen de fondo: así nunca caen sobre el nombre ni sobre el texto, sea cual sea el ancho.
+
 ## Color
 
 | Token | Valor | Uso |
@@ -32,12 +34,18 @@ Una sola familia: **Schibsted Grotesk** (OFL), grotesca sólida que conserva el 
 - **Proyectos:** marco 16:10 con borde fino. Capturas reales cuando existen; si no, una ilustración que explica el mecanismo del proyecto, con el mismo grosor de línea en todas.
 - **Chips:** tecnologías, con borde fino y radio pequeño.
 - **Línea de tiempo:** fechas a la izquierda, rol y empresa a la derecha; en «Sobre mí» la línea se llena al bajar.
+- **Superficies fijas:** la cabecera y la barra de filtros son opacas cuando quedan fijas; con transparencia se leía el contenido que pasaba por debajo. En celular la barra de filtros no se fija: ocuparía un cuarto de la pantalla.
 
 ## Movimiento
 
-- Un único momento orquestado: la entrada del hero al cargar el inicio.
+- Un único momento orquestado: la entrada del hero al cargar el inicio. Sube y aparece, corta y sin desenfoque: desenfocar texto en cada cuadro es lo más caro de una entrada en un celular lento.
 - El resto del movimiento responde a una acción: hover, menú, filtros, copiar correo, envío del formulario.
 - Con `prefers-reduced-motion` todo queda quieto y el rol del hero se muestra sin animación de escritura.
+
+## Rendimiento
+
+- La fuente latina se precarga desde `index.html`, así el texto no salta cuando llega.
+- React y el router van en su propio archivo, que casi nunca cambia y sigue en caché entre despliegues.
 
 ## Reglas
 
