@@ -6,6 +6,7 @@
 }
 
 .copy-email__address {
+  padding-block: 0.35rem;
   color: var(--text);
   font-size: var(--text-md);
   font-weight: 700;
@@ -22,8 +23,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  min-height: 40px;
-  padding: 0.4rem 0.85rem;
+  min-height: 44px;
+  padding: 0.4rem 0.95rem;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: transparent;

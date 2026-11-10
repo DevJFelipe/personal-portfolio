@@ -1,6 +1,8 @@
+import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router'
 import { useI18n } from '../i18n/useI18n.js'
 import { useDocumentMeta } from '../hooks/useDocumentMeta.js'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion.js'
 import { projectCategories, projects } from '../data/projects.js'
 import { PageHeader } from '../components/common/PageHeader.jsx'
 import { ProjectCard } from '../components/projects/ProjectCard.jsx'
@@ -16,9 +18,33 @@ export default function Projects() {
   const area = projectCategories.includes(requested) ? requested : 'all'
   const visible = area === 'all' ? projects : projects.filter((project) => project.categories.includes(area))
 
+  const reducedMotion = usePrefersReducedMotion()
+  const barRef = useRef(null)
+  const filterChanged = useRef(false)
+
   const selectArea = (next) => {
+    filterChanged.current = true
     setSearchParams(next === 'all' ? {} : { area: next }, { replace: true, preventScrollReset: true })
   }
+
+  // The bar stays pinned while the list scrolls, so a filter can change far down
+  // the page. A shorter list would leave the visitor looking past it; bring its
+  // start back under the bar. The bar's position is read from its pinned offset,
+  // not measured: once the list shrinks, the bar may have scrolled away with it.
+  useEffect(() => {
+    if (!filterChanged.current) return
+    filterChanged.current = false
+    const bar = barRef.current
+    const list = bar?.nextElementSibling
+    if (!bar || !list) return
+    const style = getComputedStyle(bar)
+    if (style.position !== 'sticky') return
+    const pinnedBottom = parseFloat(style.top) + bar.offsetHeight
+    const target = list.getBoundingClientRect().top + window.scrollY - pinnedBottom - 24
+    if (window.scrollY > target) {
+      window.scrollTo({ top: target, behavior: reducedMotion ? 'auto' : 'smooth' })
+    }
+  }, [area, reducedMotion])
 
   const countFor = (category) =>
     category === 'all' ? projects.length : projects.filter((project) => project.categories.includes(category)).length
@@ -29,7 +55,7 @@ export default function Projects() {
 
       <section className="section projects-section" aria-label={t('projects.title')}>
         <div className="container">
-          <div className="filter-bar">
+          <div className="filter-bar" ref={barRef}>
             <div className="filter-bar__options" role="group" aria-label={t('projects.filterLabel')}>
               {projectCategories.map((category) => (
                 <button
