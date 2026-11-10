@@ -92,12 +92,12 @@ export const projects = [
         title: { es: 'Ingeniería', en: 'Engineering' },
         body: {
           es: [
-            'La app está hecha en Flutter con Riverpod, Firebase para cuentas opcionales y RevenueCat para las compras, en español e inglés. PostHog mide el uso y Sentry reporta los errores.',
+            'La app está hecha en Flutter con Riverpod y está en español e inglés. Firebase (Auth y Firestore) guarda la copia de la partida en la nube, que se puede apagar desde Ajustes; RevenueCat maneja las compras, PostHog mide el uso de forma anónima y Sentry reporta los errores.',
             'La lógica del juego tiene su propio verificador: un oráculo en Python con vectores de aceptación y pruebas de propiedad, y un chequeo de mutación que rompe esa lógica a propósito y exige que las pruebas lo detecten. Una suite verde que no puede ponerse roja no prueba nada.',
             'Para desarrollar sin salir a caminar, una fuente de pasos simulada reemplaza al sensor; en las versiones publicadas no tiene ningún efecto.',
           ],
           en: [
-            'The app is built in Flutter with Riverpod, Firebase for optional accounts and RevenueCat for purchases, in Spanish and English. PostHog measures usage and Sentry reports errors.',
+            'The app is built in Flutter with Riverpod and ships in Spanish and English. Firebase (Auth and Firestore) keeps the cloud save, which can be turned off in Settings; RevenueCat handles purchases, PostHog measures usage anonymously and Sentry reports errors.',
             "The game logic has its own verifier: a Python oracle with acceptance vectors and property tests, plus a mutation check that breaks that logic on purpose and requires the tests to catch it. A green suite that can't turn red proves nothing.",
             'To develop without going for a walk, a simulated step source replaces the sensor; in published builds it has no effect.',
           ],
