@@ -1,0 +1,52 @@
+/* The one textured surface on the site: thin furrows, like rows in a field. */
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent 0 22px,
+      rgb(139 227 176 / 0.05) 22px 23px
+    ),
+    radial-gradient(ellipse 60% 120% at 100% 100%, rgb(242 196 90 / 0.1), transparent 60%),
+    var(--ground-raised);
+}
+
+.cta-band__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: end;
+  padding-block: clamp(4rem, 3rem + 4vw, 6.5rem);
+}
+
+.cta-band__text {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.cta-band h2 {
+  font-size: var(--text-2xl);
+  max-width: 17ch;
+}
+
+.cta-band p {
+  max-width: 44ch;
+  color: var(--text-2);
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
+.cta-band__actions {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-5);
+}
+
+@media (max-width: 859px) {
+  .cta-band__inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}

@@ -1,0 +1,79 @@
+/*
+  Design tokens.
+  The ground matches the hero artwork (#002b23) so every section continues
+  the same night-green field. Sprout is the interactive accent; maize is the
+  warm signal, kept for availability and small highlights only.
+*/
+:root {
+  /* Color */
+  --ground: #002b23;
+  --ground-raised: #04352c;
+  --ground-deep: #001d17;
+  --surface: #0a3f35;
+  --surface-strong: #0f4a3e;
+  --line: rgb(214 240 228 / 0.12);
+  --line-strong: rgb(214 240 228 / 0.24);
+
+  --text: #eef6f2;
+  --text-2: #a9c4ba;
+  --text-3: #92afa4;
+
+  --sprout: #8be3b0;
+  --sprout-deep: #5fcf93;
+  --maize: #f2c45a;
+  --danger: #ff9483;
+
+  /* Type */
+  --font-sans: 'Schibsted Grotesk Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.25rem;
+  --text-lg: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);
+  --text-xl: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
+  --text-2xl: clamp(2.25rem, 1.55rem + 2.8vw, 3.75rem);
+  --text-hero: clamp(2.5rem, 1.45rem + 3.6vw, 4.0625rem);
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.3;
+  --leading-body: 1.65;
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --section-pad: clamp(4.5rem, 3rem + 6vw, 8rem);
+
+  /* Layout */
+  --container: 1240px;
+  --gutter: clamp(1.25rem, 0.75rem + 2.5vw, 2.5rem);
+  --measure: 66ch;
+  --header-h: 88px;
+
+  /* Shape and depth */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-lift: 0 24px 48px -24px rgb(0 0 0 / 0.6), 0 2px 6px -2px rgb(0 0 0 / 0.3);
+  --shadow-soft: 0 14px 30px -18px rgb(0 0 0 / 0.55);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 600ms;
+}
+
+@media (max-width: 899px) {
+  :root {
+    --header-h: 72px;
+  }
+}
