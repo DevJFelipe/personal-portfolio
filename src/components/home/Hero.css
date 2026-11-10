@@ -123,31 +123,78 @@
   color: var(--sprout);
 }
 
-.hero__visual img {
-  width: 100%;
+.hero__art {
+  position: relative;
   max-width: 500px;
   margin-inline: auto;
+}
+
+.hero__art img {
+  width: 100%;
+}
+
+/* Colors sampled from the original background art, kept as they were. */
+.hero__sparkle {
+  position: absolute;
+  width: clamp(14px, 4.4%, 22px);
+  height: auto;
+  aspect-ratio: 1;
+  fill: currentColor;
+}
+
+.hero__sparkle--cream {
+  top: 9%;
+  left: 34%;
+  color: #ffeec6;
+}
+
+.hero__sparkle--magenta {
+  top: 31%;
+  left: 3%;
+  color: #a90064;
+}
+
+.hero__sparkle--green {
+  top: 70%;
+  left: -5%;
+  color: #7edb55;
+}
+
+.hero__sparkle--gold {
+  top: 60%;
+  left: 93%;
+  color: #fac012;
 }
 
 /* One orchestrated entrance on load; nothing else on the page enters this way. */
 @media (prefers-reduced-motion: no-preference) {
   .hero__text > * {
-    animation: hero-in 900ms var(--ease-out) both;
-    animation-delay: calc(var(--order, 0) * 90ms + 80ms);
+    animation: hero-in 700ms var(--ease-out) both;
+    animation-delay: calc(var(--order, 0) * 60ms + 40ms);
   }
 
-  .hero__visual img {
+  .hero__art img {
     animation:
-      hero-visual-in 1100ms var(--ease-out) 250ms both,
-      hero-float 6s var(--ease-in-out) 1350ms infinite alternate;
+      hero-visual-in 1000ms var(--ease-out) 150ms both,
+      hero-float 6s var(--ease-in-out) 1150ms infinite alternate;
+  }
+
+  .hero__sparkle {
+    animation: hero-fade-in 800ms var(--ease-out) 500ms both;
   }
 }
 
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* No blur: re-rasterizing blurred text every frame is the costliest part of an entrance on a slow phone. */
 @keyframes hero-in {
   from {
     opacity: 0;
-    transform: translateY(16px);
-    filter: blur(4px);
+    transform: translateY(14px);
   }
 }
 
@@ -173,13 +220,20 @@
   }
 }
 
-@media (max-width: 767px) {
+/* Below 900px two columns squeeze the name into four lines, so the hero stacks. */
+@media (max-width: 899px) {
   .hero__grid {
     grid-template-columns: 1fr;
     gap: var(--space-7);
   }
 
-  .hero__visual img {
+  .hero__art {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 599px) {
+  .hero__art {
     max-width: 320px;
   }
 }

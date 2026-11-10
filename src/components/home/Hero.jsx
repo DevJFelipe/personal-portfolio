@@ -6,6 +6,19 @@ import heroIllustration from '../../assets/img/hero-illustration.webp'
 import { CircleArrowRight, MapPin } from '../icons.js'
 import './Hero.css'
 
+// The original background art carried these four sparkles, so they landed on
+// the name or the lead depending on the viewport. Drawn here, they stay
+// anchored to the illustration at every width.
+const SPARKLES = ['cream', 'magenta', 'green', 'gold']
+
+function Sparkle({ tone }) {
+  return (
+    <svg className={`hero__sparkle hero__sparkle--${tone}`} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 0C12.9 7.2 16.8 11.1 24 12C16.8 12.9 12.9 16.8 12 24C11.1 16.8 7.2 12.9 0 12C7.2 11.1 11.1 7.2 12 0Z" />
+    </svg>
+  )
+}
+
 export function Hero() {
   const { t, pick } = useI18n()
   const roles = t('hero.roles')
@@ -53,7 +66,12 @@ export function Hero() {
         </div>
 
         <div className="hero__visual">
-          <img src={heroIllustration} alt="" width="500" height="500" fetchPriority="high" decoding="async" />
+          <div className="hero__art">
+            <img src={heroIllustration} alt="" width="500" height="500" fetchPriority="high" decoding="async" />
+            {SPARKLES.map((tone) => (
+              <Sparkle key={tone} tone={tone} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
