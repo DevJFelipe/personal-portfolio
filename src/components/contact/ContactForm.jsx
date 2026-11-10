@@ -8,6 +8,10 @@ import './ContactForm.css'
 // FormSubmit relays the message to the inbox; no account or server needed.
 // The first message sent from a new domain asks the owner to confirm the address once.
 const ENDPOINT = `https://formsubmit.co/ajax/${profile.email}`
+// FormSubmit has taken over 30 seconds to answer in production. Giving up sooner
+// would report a failure for a message that still arrives, and invite a resend.
+const TIMEOUT_MS = 60000
+const SLOW_NOTICE_MS = 8000
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const TYPES = ['app', 'web', 'backend', 'other']
 const EMPTY = { name: '', email: '', type: '', message: '', website: '' }
@@ -43,6 +47,7 @@ export function ContactForm() {
   const [touched, setTouched] = useState({})
   const [status, setStatus] = useState('idle')
   const [sent, setSent] = useState(null)
+  const [slow, setSlow] = useState(false)
   const nameRef = useRef(null)
   const emailRef = useRef(null)
   const messageRef = useRef(null)
@@ -82,7 +87,8 @@ export function ContactForm() {
 
     setStatus('sending')
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 15000)
+    const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS)
+    const slowNotice = setTimeout(() => setSlow(true), SLOW_NOTICE_MS)
     try {
       const response = await fetch(ENDPOINT, {
         method: 'POST',
@@ -110,6 +116,8 @@ export function ContactForm() {
       setStatus('error')
     } finally {
       clearTimeout(timeout)
+      clearTimeout(slowNotice)
+      setSlow(false)
     }
   }
 
@@ -239,8 +247,11 @@ export function ContactForm() {
           {status === 'sending' ? <Loader aria-hidden="true" className="spin" /> : <Send aria-hidden="true" />}
           {status === 'sending' ? t('contact.sending') : t('contact.submit')}
         </button>
-        <p className="contact-form__privacy">{t('contact.privacy')}</p>
+        <p className="contact-form__privacy">{slow ? t('contact.slow') : t('contact.privacy')}</p>
       </div>
+      <p className="visually-hidden" role="status">
+        {slow ? t('contact.slow') : ''}
+      </p>
     </form>
   )
 }
