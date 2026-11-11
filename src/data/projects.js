@@ -7,6 +7,13 @@ import calkoLayers from '../assets/projects/calko-04-layers.webp'
 import calkoLightbox from '../assets/projects/calko-05-lightbox.webp'
 import calkoTemplates from '../assets/projects/calko-06-templates.webp'
 import calkoIcon from '../assets/projects/calko-icon.webp'
+import skillionProfile from '../assets/projects/skillion-01-profile.webp'
+import skillionRewards from '../assets/projects/skillion-02-rewards.webp'
+import skillionTime from '../assets/projects/skillion-03-time.webp'
+import skillionToday from '../assets/projects/skillion-04-today.webp'
+import skillionDestiny from '../assets/projects/skillion-05-destiny.webp'
+import skillionAvatar from '../assets/projects/skillion-06-avatar.webp'
+import skillionIcon from '../assets/projects/skillion-icon.webp'
 import playground from '../assets/projects/playground.webp'
 
 /*
@@ -274,14 +281,36 @@ export const projects = [
     },
     year: '2025–2026',
     kind: 'startup',
-    status: 'done',
+    status: 'live',
     categories: ['mobile'],
     platforms: { es: 'iOS y Android', en: 'iOS and Android' },
     role: { es: 'Cofundador y líder técnico', en: 'Co-founder and lead developer' },
     stack: ['Flutter', 'Dart', 'Riverpod', 'Drift', 'Clean Architecture', 'Mixpanel', 'Firebase Analytics'],
-    links: {},
-    media: { type: 'art', art: 'skillion' },
+    links: {
+      website: 'https://skillion.app',
+      appStore: 'https://apps.apple.com/us/app/skillion-gamify-your-life/id6752905262',
+      googlePlay: 'https://play.google.com/store/apps/details?id=app.skillion',
+    },
+    media: {
+      type: 'phones',
+      icon: skillionIcon,
+      images: [
+        { src: skillionProfile, alt: { es: 'Perfil del jugador con su nivel, las barras de experiencia, vida y energía, y sus tres habilidades principales.', en: 'Player profile with level, XP, health and energy bars, and the top three skills.' } },
+        { src: skillionRewards, alt: { es: 'Tienda de recompensas: las monedas se cambian por premios que pone el propio usuario.', en: 'Rewards store: coins are traded for rewards the user sets.' } },
+        { src: skillionTime, alt: { es: 'El día en un reloj de 24 horas, con bloques de tiempo enlazados a tareas.', en: 'The day on a 24-hour clock, with time blocks linked to tasks.' } },
+        { src: skillionToday, alt: { es: 'Tareas del día: cada una suma experiencia a una habilidad y puede dar un golpe crítico.', en: "Today's tasks: each one adds XP to a skill and can land a critical hit." } },
+        { src: skillionDestiny, alt: { es: 'La Tarea del Destino elige qué hacer, con monedas en juego.', en: 'Task of Destiny picks what to do, with coins at stake.' } },
+        { src: skillionAvatar, alt: { es: 'Avatar en pixel art personalizable y temas de color de la app.', en: 'Customizable pixel-art avatar and app color themes.' } },
+      ],
+    },
     sections: [
+      {
+        title: { es: 'La app', en: 'The app' },
+        body: {
+          es: 'Skillion convierte las tareas y los hábitos en un juego de rol. El usuario crea las habilidades que quiere subir, cada tarea cumplida les da experiencia y monedas, y con esas monedas se da los premios que él mismo elige. Está en español e inglés.',
+          en: 'Skillion turns tasks and habits into a role-playing game. Users create the skills they want to level up, every completed task gives those skills XP and coins, and the coins buy rewards they choose themselves. It is available in English and Spanish.',
+        },
+      },
       {
         title: { es: 'Mi rol', en: 'My role' },
         body: {

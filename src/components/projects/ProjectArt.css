@@ -8,10 +8,6 @@
   fill: var(--ground-raised);
 }
 
-.project-art .art-dots rect {
-  fill: rgb(214 240 228 / 0.18);
-}
-
 .project-art .art-line {
   fill: none;
   stroke: var(--text-2);
@@ -24,41 +20,12 @@
   stroke: rgb(214 240 228 / 0.2);
 }
 
-.project-art .art-line--accent {
-  stroke: var(--sprout);
-  stroke-width: 2;
-}
-
 .project-art .art-grid {
   fill: none;
   stroke: rgb(214 240 228 / 0.08);
   stroke-width: 1;
 }
 
-.project-art .art-node {
-  fill: var(--ground);
-  stroke: rgb(214 240 228 / 0.28);
-  stroke-width: 1.5;
-}
-
-.project-art .art-node--on {
-  stroke: var(--sprout);
-}
-
-.project-art .art-node--current {
-  stroke: var(--maize);
-  stroke-width: 2.5;
-}
-
-.project-art .art-node__core {
-  fill: var(--sprout);
-}
-
-.project-art .art-node--current + .art-node__core {
-  fill: var(--maize);
-}
-
-.project-art .art-label,
 .project-art .art-axis text {
   fill: var(--text-2);
   font-size: 13px;

@@ -57,51 +57,6 @@ function Oasis() {
   )
 }
 
-function Skillion() {
-  const nodes = [
-    { x: 240, y: 236, state: 'on' },
-    { x: 170, y: 176, state: 'on' },
-    { x: 310, y: 176, state: 'on' },
-    { x: 120, y: 112, state: 'on' },
-    { x: 220, y: 112, state: 'current' },
-    { x: 310, y: 112, state: 'off' },
-    { x: 380, y: 112, state: 'off' },
-    { x: 170, y: 56, state: 'off' },
-    { x: 270, y: 56, state: 'off' },
-  ]
-  const edges = [
-    [0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6], [4, 7], [4, 8],
-  ]
-  return (
-    <>
-      <rect width="480" height="300" className="art-ground" />
-      <g className="art-dots">
-        {Array.from({ length: 12 }, (_, col) =>
-          Array.from({ length: 8 }, (_, row) => <rect key={`${col}-${row}`} x={20 + col * 40} y={18 + row * 38} width="2" height="2" />),
-        )}
-      </g>
-      {edges.map(([a, b]) => (
-        <path
-          key={`${a}-${b}`}
-          d={`M${nodes[a].x} ${nodes[a].y}V${(nodes[a].y + nodes[b].y) / 2}H${nodes[b].x}V${nodes[b].y}`}
-          className={nodes[b].state === 'off' ? 'art-line art-line--faint' : 'art-line art-line--accent'}
-        />
-      ))}
-      {nodes.map((node, index) => (
-        <g key={index} transform={`translate(${node.x - 17} ${node.y - 17})`}>
-          <rect width="34" height="34" rx="4" className={`art-node art-node--${node.state}`} />
-          {node.state !== 'off' && <rect x="12" y="12" width="10" height="10" className="art-node__core" />}
-        </g>
-      ))}
-      <g transform="translate(28 266)">
-        <text className="art-label" x="0" y="12">Lv. 7</text>
-        <rect x="46" y="2" width="96" height="12" rx="2" className="art-bar" />
-        <rect x="48" y="4" width="58" height="8" rx="1" className="art-bar__fill" />
-      </g>
-    </>
-  )
-}
-
 function Road({ lang }) {
   const labels = LABELS[lang] ?? LABELS.es
   return (
@@ -296,7 +251,6 @@ function FitNow() {
 
 const ART = {
   oasis: Oasis,
-  skillion: Skillion,
   road: Road,
   iidta: Iidta,
   sigma: Sigma,
