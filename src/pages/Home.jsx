@@ -6,19 +6,19 @@ import { services } from '../data/services.js'
 import { experience } from '../data/experience.js'
 import { Hero } from '../components/home/Hero.jsx'
 import { ProjectCard } from '../components/projects/ProjectCard.jsx'
+import { ProjectRow } from '../components/projects/ProjectRow.jsx'
 import { Timeline } from '../components/common/Timeline.jsx'
 import { CtaBand } from '../components/common/CtaBand.jsx'
-import { ArrowRight, ChartLine, Server, Smartphone, Store } from '../components/icons.js'
+import { ArrowRight } from '../components/icons.js'
 import './Home.css'
-
-const SERVICE_ICONS = { mobile: Smartphone, store: Store, server: Server, chart: ChartLine }
 
 export default function Home() {
   const { t, pick } = useI18n()
   useDocumentMeta({ title: t('meta.homeTitle'), description: t('meta.homeDescription') })
 
-  const featured = projects.filter((project) => project.featured)
-  const [first, second, third, fourth] = featured
+  // Only real screenshots get a picture. Everything else is listed as text.
+  const shown = projects.filter((project) => project.featured && project.media)
+  const listed = projects.filter((project) => !project.media).slice(0, 3)
 
   return (
     <>
@@ -38,13 +38,18 @@ export default function Home() {
           </div>
 
           <div className="work-grid">
-            {first && <ProjectCard project={first} layout="wide" eager />}
-            <div className="work-grid__pair">
-              {second && <ProjectCard project={second} />}
-              {third && <ProjectCard project={third} />}
-            </div>
-            {fourth && <ProjectCard project={fourth} layout="wide" reverse />}
+            {shown.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} layout="wide" reverse={index % 2 === 1} eager={index === 0} />
+            ))}
           </div>
+
+          <ul className="project-rows work-rows">
+            {listed.map((project) => (
+              <li key={project.slug}>
+                <ProjectRow project={project} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -62,23 +67,15 @@ export default function Home() {
             </Link>
           </div>
           <ul className="services__list">
-            {services.map((service) => {
-              const Icon = SERVICE_ICONS[service.icon]
-              return (
-                <li key={service.id} className="service">
-                  <span className="service__icon" aria-hidden="true">
-                    <Icon />
-                  </span>
-                  <div className="service__text">
-                    <h3>{pick(service.title)}</h3>
-                    <p>{pick(service.body)}</p>
-                    <p className="service__tech">
-                      {t('home.servicesTech')} {service.tech.join(', ')}
-                    </p>
-                  </div>
-                </li>
-              )
-            })}
+            {services.map((service) => (
+              <li key={service.id} className="service">
+                <h3>{pick(service.title)}</h3>
+                <p>{pick(service.body)}</p>
+                <p className="service__tech">
+                  {t('home.servicesTech')} {service.tech.join(', ')}
+                </p>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

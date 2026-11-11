@@ -78,9 +78,13 @@
   list-style: none;
 }
 
-/* Changing the filter re-renders the grid; the cards settle in to show what changed. */
+.projects-grid + .project-rows {
+  margin-top: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
+}
+
+/* Changing the filter re-renders the results; they settle in to show what changed. */
 @media (prefers-reduced-motion: no-preference) {
-  .projects-grid > li {
+  .projects-results li {
     animation: grid-in 420ms var(--ease-out) both;
     animation-delay: calc(min(var(--i, 0), 6) * 45ms);
   }

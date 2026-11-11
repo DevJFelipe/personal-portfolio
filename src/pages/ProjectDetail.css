@@ -131,6 +131,11 @@
   padding-block: var(--section-pad);
 }
 
+/* No screenshots: the text follows the header directly. */
+.case-body--text {
+  padding-top: var(--space-6);
+}
+
 .case-sections {
   display: grid;
   gap: var(--space-8);

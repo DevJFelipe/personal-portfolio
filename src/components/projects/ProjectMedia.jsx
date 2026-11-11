@@ -1,23 +1,14 @@
 import { useI18n } from '../../i18n/useI18n.js'
-import { ProjectArt } from './ProjectArt.jsx'
 import './ProjectMedia.css'
 
 /** Visual for a project. `variant` is 'card' (thumbnail) or 'detail' (case study header). */
 export function ProjectMedia({ project, variant = 'card', eager = false }) {
-  const { lang, pick, t } = useI18n()
+  const { pick, t } = useI18n()
   const media = project.media
   if (!media) return null
 
   const name = pick(project.name)
   const loading = eager ? 'eager' : 'lazy'
-
-  if (media.type === 'art') {
-    return (
-      <div className={`media media--art media--${variant}`}>
-        <ProjectArt art={media.art} lang={lang} label={`${name}: ${pick(project.tagline)}`} />
-      </div>
-    )
-  }
 
   if (media.type === 'phones') {
     const shots = variant === 'card' ? media.images.slice(0, 3) : media.images

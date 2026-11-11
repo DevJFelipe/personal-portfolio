@@ -21,7 +21,7 @@ Los cuatro destellos del arte original se dibujan alrededor de la ilustración d
 | `--sprout` | `#8be3b0` | Acento interactivo: enlaces, foco, estados activos |
 | `--maize` | `#f2c45a` | Señal cálida: disponibilidad y detalles puntuales |
 
-Todo el texto pasa 4.5:1 sobre su fondo. Oasis usa la paleta de su propia marca dentro de su ilustración.
+Todo el texto pasa 4.5:1 sobre su fondo.
 
 ## Tipografía
 
@@ -31,7 +31,8 @@ Una sola familia: **Schibsted Grotesk** (OFL), grotesca sólida que conserva el 
 
 - **Botones:** esquinas rectas y relleno que barre de izquierda a derecha al pasar el cursor, heredados del hero. `btn--solid` para la acción principal.
 - **Acción de texto:** texto en negrita con flecha que se desplaza (el «Hablemos» del hero).
-- **Proyectos:** marco 16:10 con borde fino. Capturas reales cuando existen; si no, una ilustración que explica el mecanismo del proyecto, con el mismo grosor de línea en todas.
+- **Proyectos:** solo las capturas reales llevan imagen (marco 16:10 con borde fino). Un proyecto sin capturas públicas va en una lista de texto con filetes: nombre, resumen, tecnologías y estado. No se dibujan ilustraciones ni diagramas para rellenar.
+- **Servicios:** lista tipográfica, sin íconos en recuadros.
 - **Chips:** tecnologías, con borde fino y radio pequeño.
 - **Línea de tiempo:** fechas a la izquierda, rol y empresa a la derecha; en «Sobre mí» la línea se llena al bajar.
 - **Superficies fijas:** la cabecera y la barra de filtros son opacas cuando quedan fijas; con transparencia se leía el contenido que pasaba por debajo. En celular la barra de filtros no se fija: ocuparía un cuarto de la pantalla.

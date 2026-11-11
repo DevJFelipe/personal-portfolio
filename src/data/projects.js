@@ -228,7 +228,6 @@ export const projects = [
     role: { es: 'Diseño y desarrollo (freelance)', en: 'Design and development (freelance)' },
     stack: ['Shopify', 'Liquid', 'CSS', 'JavaScript', 'Wompi', 'Siigo'],
     links: {},
-    media: { type: 'art', art: 'oasis' },
     sections: [
       {
         title: { es: 'El encargo', en: 'The brief' },
@@ -356,7 +355,6 @@ export const projects = [
     links: {
       github: [{ label: 'deteccion-vial-app', url: 'https://github.com/DevJFelipe/deteccion-vial-app' }],
     },
-    media: { type: 'art', art: 'road' },
     sections: [
       {
         title: { es: 'El proyecto', en: 'The project' },
@@ -410,7 +408,6 @@ export const projects = [
     links: {
       github: [{ label: 'iidta-platform', url: 'https://github.com/DevJFelipe/iidta-platform' }],
     },
-    media: { type: 'art', art: 'iidta' },
     sections: [
       {
         title: { es: 'El proyecto', en: 'The project' },
@@ -447,7 +444,6 @@ export const projects = [
     links: {
       github: [{ label: 'SIGMA_backend', url: 'https://github.com/Server-IA/SIGMA_backend' }],
     },
-    media: { type: 'art', art: 'sigma' },
     sections: [
       {
         title: { es: 'Qué hace', en: 'What it does' },
@@ -492,7 +488,6 @@ export const projects = [
     links: {
       github: [{ label: 'residence-app', url: 'https://github.com/DevJFelipe/residence-app' }],
     },
-    media: { type: 'art', art: 'residence' },
     sections: [
       {
         title: { es: 'Para la administración', en: 'For managers' },
@@ -562,7 +557,6 @@ export const projects = [
         { label: { es: 'Artículo en LaTeX', en: 'LaTeX article' }, url: 'https://github.com/DevJFelipe/cocoa-price-forecast-latex-article' },
       ],
     },
-    media: { type: 'art', art: 'cacao' },
     sections: [
       {
         title: { es: 'La app', en: 'The app' },
@@ -599,7 +593,6 @@ export const projects = [
     links: {
       github: [{ label: 'FitNow-Backend', url: 'https://github.com/DevJFelipe/FitNow-Backend' }],
     },
-    media: { type: 'art', art: 'fitnow' },
     sections: [
       {
         title: { es: 'Resultado', en: 'Outcome' },

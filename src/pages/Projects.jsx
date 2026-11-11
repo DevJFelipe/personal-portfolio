@@ -6,6 +6,7 @@ import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion.js'
 import { projectCategories, projects } from '../data/projects.js'
 import { PageHeader } from '../components/common/PageHeader.jsx'
 import { ProjectCard } from '../components/projects/ProjectCard.jsx'
+import { ProjectRow } from '../components/projects/ProjectRow.jsx'
 import { CtaBand } from '../components/common/CtaBand.jsx'
 import './Projects.css'
 
@@ -17,6 +18,9 @@ export default function Projects() {
   const requested = searchParams.get('area')
   const area = projectCategories.includes(requested) ? requested : 'all'
   const visible = area === 'all' ? projects : projects.filter((project) => project.categories.includes(area))
+  // Projects with real screenshots show them; the rest are listed as text.
+  const pictured = visible.filter((project) => project.media)
+  const listed = visible.filter((project) => !project.media)
 
   const reducedMotion = usePrefersReducedMotion()
   const barRef = useRef(null)
@@ -78,13 +82,26 @@ export default function Projects() {
           {visible.length === 0 ? (
             <p className="projects-empty">{t('projects.empty')}</p>
           ) : (
-            <ul className="projects-grid" key={area}>
-              {visible.map((project, index) => (
-                <li key={project.slug} style={{ '--i': index }}>
-                  <ProjectCard project={project} headingLevel={2} eager={index < 2} />
-                </li>
-              ))}
-            </ul>
+            <div className="projects-results" key={area}>
+              {pictured.length > 0 && (
+                <ul className="projects-grid">
+                  {pictured.map((project, index) => (
+                    <li key={project.slug} style={{ '--i': index }}>
+                      <ProjectCard project={project} headingLevel={2} eager={index < 2} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {listed.length > 0 && (
+                <ul className="project-rows">
+                  {listed.map((project, index) => (
+                    <li key={project.slug} style={{ '--i': pictured.length + index }}>
+                      <ProjectRow project={project} headingLevel={2} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           )}
         </div>
       </section>

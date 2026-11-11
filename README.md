@@ -38,7 +38,7 @@ Todo el contenido se escribe como `{ es: '...', en: '...' }`. Si falta la versi�
 ### Agregar un proyecto
 
 1. Copia uno de los objetos de `src/data/projects.js` y cambia `slug`, textos, `stack` y `links`.
-2. Para la imagen: pon capturas en `src/assets/projects/` (formato WebP) y usa `media: { type: 'screens', ... }` o `type: 'phones'`. Si no hay capturas públicas, usa una de las ilustraciones de `ProjectArt.jsx`.
+2. Para la imagen: pon capturas en `src/assets/projects/` (formato WebP) y usa `media: { type: 'screens', ... }` o `type: 'phones'`. Si no hay capturas públicas, no pongas `media`: el proyecto sale en la lista de texto, sin imagen inventada.
 3. `featured: true` lo muestra en el inicio (se usan los cuatro primeros destacados).
 4. Agrega la URL nueva a `public/sitemap.xml`.
 

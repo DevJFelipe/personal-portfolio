@@ -3,17 +3,8 @@
   gap: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
 }
 
-.work-grid__pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2rem, 1rem + 3vw, 4rem);
-}
-
-@media (max-width: 639px) {
-  .work-grid__pair {
-    grid-template-columns: 1fr;
-    gap: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
-  }
+.work-rows {
+  margin-top: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
 }
 
 /* Services: an intro that stays in view and a plain list, not a card grid. */
@@ -54,8 +45,7 @@
 
 .service {
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: var(--space-5);
+  gap: var(--space-2);
   padding-block: var(--space-6);
   border-top: 1px solid var(--line);
 }
@@ -65,36 +55,20 @@
   border-top: 0;
 }
 
-.service__icon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-md);
-  color: var(--sprout);
+.service:last-child {
+  padding-bottom: 0;
 }
 
-.service__icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.service__text {
-  display: grid;
-  gap: var(--space-2);
-}
-
-.service__text h3 {
+.service h3 {
   font-size: var(--text-lg);
 }
 
-.service__text p {
+.service p {
   max-width: 58ch;
   color: var(--text-2);
 }
 
-.service__tech {
+.service .service__tech {
   color: var(--text-3);
   font-size: var(--text-sm);
 }

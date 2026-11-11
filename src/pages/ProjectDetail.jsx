@@ -107,7 +107,7 @@ export default function ProjectDetail() {
         </div>
       )}
 
-      <div className="container case-body">
+      <div className={`container case-body${project.media ? '' : ' case-body--text'}`}>
         <div className="case-sections">
           {project.sections.map((section) => (
             <section key={pick(section.title)} className="case-section">
