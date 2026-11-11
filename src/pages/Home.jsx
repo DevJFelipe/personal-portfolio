@@ -8,10 +8,9 @@ import { Hero } from '../components/home/Hero.jsx'
 import { ProjectCard } from '../components/projects/ProjectCard.jsx'
 import { Timeline } from '../components/common/Timeline.jsx'
 import { CtaBand } from '../components/common/CtaBand.jsx'
-import { ArrowRight, ChartLine, Server, Smartphone, Store } from '../components/icons.js'
+import { ArrowRight } from '../components/icons.js'
+import { ServiceIcon } from '../components/home/ServiceIcon.jsx'
 import './Home.css'
-
-const SERVICE_ICONS = { mobile: Smartphone, store: Store, server: Server, chart: ChartLine }
 
 export default function Home() {
   const { t, pick } = useI18n()
@@ -62,23 +61,18 @@ export default function Home() {
             </Link>
           </div>
           <ul className="services__list">
-            {services.map((service) => {
-              const Icon = SERVICE_ICONS[service.icon]
-              return (
-                <li key={service.id} className="service">
-                  <span className="service__icon" aria-hidden="true">
-                    <Icon />
-                  </span>
-                  <div className="service__text">
-                    <h3>{pick(service.title)}</h3>
-                    <p>{pick(service.body)}</p>
-                    <p className="service__tech">
-                      {t('home.servicesTech')} {service.tech.join(', ')}
-                    </p>
-                  </div>
-                </li>
-              )
-            })}
+            {services.map((service) => (
+              <li key={service.id} className="service">
+                <ServiceIcon name={service.icon} />
+                <div className="service__text">
+                  <h3>{pick(service.title)}</h3>
+                  <p>{pick(service.body)}</p>
+                  <p className="service__tech">
+                    {t('home.servicesTech')} {service.tech.join(', ')}
+                  </p>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

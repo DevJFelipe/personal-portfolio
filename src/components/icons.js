@@ -5,7 +5,6 @@ export {
   LuArrowUp as ArrowUp,
   LuArrowUpRight as ArrowUpRight,
   LuCheck as Check,
-  LuChartLine as ChartLine,
   LuCircleAlert as CircleAlert,
   LuCircleArrowRight as CircleArrowRight,
   LuClock as Clock,
@@ -18,9 +17,6 @@ export {
   LuMapPin as MapPin,
   LuMenu as Menu,
   LuSend as Send,
-  LuServer as Server,
-  LuSmartphone as Smartphone,
-  LuStore as Store,
   LuX as Close,
 } from 'react-icons/lu'
 

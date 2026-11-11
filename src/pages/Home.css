@@ -54,7 +54,7 @@
 
 .service {
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
+  grid-template-columns: 4.5rem minmax(0, 1fr);
   gap: var(--space-5);
   padding-block: var(--space-6);
   border-top: 1px solid var(--line);
@@ -65,19 +65,25 @@
   border-top: 0;
 }
 
-.service__icon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-md);
-  color: var(--sprout);
+/* Drawn objects, not icons in a tile: they sit on the page like the hero art does. */
+.service-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-top: -0.5rem;
+  overflow: visible;
 }
 
-.service__icon svg {
-  width: 22px;
-  height: 22px;
+@media (max-width: 639px) {
+  .service {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .service-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-top: -0.25rem;
+  }
 }
 
 .service__text {
